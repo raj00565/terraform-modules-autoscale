@@ -15,15 +15,15 @@ resource "aws_launch_configuration" "example" {
   }
 }
 
-data "template_file" "user_data" {
-  template = file("${path.module}/user-data.sh")
+#data "template_file" "user_data" {
+#  template = file("${path.module}/user-data.sh")
 
-  vars = {
-    server_port = var.server_port
-    db_address  = data.terraform_remote_state.db.outputs.address
-    db_port     = data.terraform_remote_state.db.outputs.port
-  }
-}
+#  vars = {
+#    server_port = var.server_port
+#    db_address  = data.terraform_remote_state.db.outputs.address
+#    db_port     = data.terraform_remote_state.db.outputs.port
+#  }
+#}
 
 resource "aws_autoscaling_group" "example" {
   launch_configuration = aws_launch_configuration.example.name
